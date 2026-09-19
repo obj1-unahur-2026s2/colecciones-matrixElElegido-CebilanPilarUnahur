@@ -44,7 +44,7 @@ object trinity {
 
 object nave {
 
-    const pasajeros = []
+    const pasajeros = [neo, morfeo, trinity]
 
     method subirPasajeros(unPasajero) {
         pasajeros.add(unPasajero)
@@ -58,9 +58,26 @@ object nave {
         return pasajeros.size()
     }
 
-    method elPasajeroConMasVitalidad(){
+    method elPasajeroConMasVitalidad() {
         return pasajeros.max({pasajero => pasajero.vitalidad()})
     }
 
+    method estaEquilibrada() {
+       // return self.elPasajeroConMasVitalidad().vitalidad() <= min*2
+    }
+
+    method estaElELegido() {
+        return pasajeros.any({unPasajero => unPasajero.esElElegido()})
+    }
+
+    method chocar() {
+        pasajeros.forEach({p => p.saltar()})
+        pasajeros.clear()
+    }
+
+    method acelerar() {
+        pasajeros.filter({p => p.esElElegido()}).forEach({p => p.saltar()})
+
+    }
 
 }
